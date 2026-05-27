@@ -1,0 +1,44 @@
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #0a0a0c;
+    color: #f3f4f6;
+    overflow-x: hidden;
+}
+.font-serif {
+    font-family: 'Playfair Display', serif;
+}
+/* Custom Loader Styles */
+.loader-overlay {
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+}
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #0a0a0c;
+}
+::-webkit-scrollbar-thumb {
+    background: #c59a2f;
+    border-radius: 3px;
+}
+/* Custom Glassmorphism */
+.glass {
+    background: rgba(10, 10, 12, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.glass-light {
+    background: rgba(20, 20, 25, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+/* Zoom effect for backgrounds */
+.zoom-bg {
+    transition: transform 12s ease;
+}
+.group:hover .zoom-bg {
+    transform: scale(1.08);
+}
