@@ -55,8 +55,12 @@
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(197,154,47,0.08)_0%,transparent_70%)] pointer-events-none"></div>
             
             <div class="text-center max-w-lg z-10" data-aos="fade-up">
-                <span class="text-gold-500 tracking-[0.4em] uppercase text-xs font-semibold mb-3 block">Welcome to Excellence</span>
-                <h1 class="font-serif text-5xl md:text-7xl font-light text-white tracking-widest mb-6">VENZON</h1>
+                <!-- <span class="text-gold-500 tracking-[0.4em] uppercase text-xs font-semibold mb-3 block">Welcome to Excellence</span> -->
+                <h1 class="font-serif text-5xl md:text-7xl font-light text-white tracking-widest mb-6">
+
+                <img src="assets/images/white-logo-maindatee.png">
+
+                </h1>
                 <div class="h-[1px] w-24 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mb-8"></div>
                 
                 <p class="text-gray-400 text-sm md:text-base font-light mb-12 leading-relaxed tracking-wide">
@@ -89,9 +93,10 @@
         <header class="fixed top-0 left-0 w-full z-40 transition-all duration-500" id="mainHeader">
             <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
                 <!-- Brand Logo -->
-                <a href="#" class="group flex flex-col">
-                    <span class="font-serif text-3xl md:text-4xl font-light tracking-widest text-white group-hover:text-gold-400 transition-colors duration-300">VENZON</span>
-                    <span class="text-[8px] uppercase tracking-[0.55em] text-gold-500 -mt-1 font-bold">Investments</span>
+                <a href="#" class="group flex items-center shrink-0" aria-label="Venzon Home">
+                    <!-- <span class="font-serif text-3xl md:text-4xl font-light tracking-widest text-white group-hover:text-gold-400 transition-colors duration-300">VENZON</span>
+                    <span class="text-[8px] uppercase tracking-[0.55em] text-gold-500 -mt-1 font-bold">Investments</span> -->
+                    <img src="assets/images/white-logo-maindatee.png" alt="Venzon" class="block h-12 w-auto max-w-[160px] object-contain sm:h-14 sm:max-w-[190px] lg:h-16 lg:max-w-[220px]">
                 </a>
 
                 <!-- Desktop Menu Options -->
@@ -785,7 +790,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                     
                     <div>
-                        <h3 class="font-serif text-2xl text-white tracking-widest mb-4">VENZON</h3>
+                        <img src="assets/images/white-logo-maindatee.png" alt="Venzon" class="block h-14 w-auto max-w-[180px] object-contain mb-4">
                         <p class="text-gray-400 text-xs font-light leading-relaxed max-w-xs">
                             Private global developer creating generational monuments and high yield assets for discerning family offices.
                         </p>
