@@ -12,16 +12,16 @@
                     extend: {
                         colors: {
                             gold: {
-                                50: '#fdfbf7',
-                                100: '#fbf7ed',
-                                200: '#f4ebd2',
-                                300: '#eddca8',
-                                400: '#e1c66c',
-                                500: '#d5b03f',
-                                600: '#c59a2f',
-                                700: '#a57d23',
-                                800: '#84621c',
-                                900: '#644816',
+                                50: '#f7f8f1',
+                                100: '#eef0df',
+                                200: '#dde2bd',
+                                300: '#c9d093',
+                                400: '#a6b360',
+                                500: '#869244',
+                                600: '#636b2f',
+                                700: '#545b28',
+                                800: '#434820',
+                                900: '#313517',
                             },
                             dark: '#0a0a0c',
                             charcoal: '#141419'
@@ -44,15 +44,62 @@
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <link href="assets/css/style.css" rel="stylesheet">
     </head>
+    <style>
+        body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #0a0a0c;
+    color: #f3f4f6;
+    overflow-x: hidden;
+}
+.font-serif {
+    font-family: 'Playfair Display', serif;
+}
+/* Custom Loader Styles */
+.loader-overlay {
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+}
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #0a0a0c;
+}
+::-webkit-scrollbar-thumb {
+    background: #636b2f;
+    border-radius: 3px;
+}
+/* Custom Glassmorphism */
+.glass {
+    background: rgba(10, 10, 12, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.glass-light {
+    background: rgba(20, 20, 25, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+/* Zoom effect for backgrounds */
+.zoom-bg {
+    transition: transform 12s ease;
+}
+.group:hover .zoom-bg {
+    transform: scale(1.08);
+}
+
+    </style>
     <body class="bg-dark text-gray-100 antialiased selection:bg-gold-600 selection:text-white">
 
         <audio id="ambientAudio" loop preload="auto">
-            <source src="https://assets.mixkit.co/active_storage/sfx/123/123.wav" type="audio/wav">
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+            <source src="assets/images/sunborn.mp3" type="audio/wav">
+            <source src="assets/images/sunborn.mp3" type="audio/mp3">
         </audio>
 
         <div id="loader" class="fixed inset-0 z-[100] bg-dark flex flex-col items-center justify-center p-6 loader-overlay">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(197,154,47,0.08)_0%,transparent_70%)] pointer-events-none"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,107,47,0.08)_0%,transparent_70%)] pointer-events-none"></div>
             
             <div class="text-center max-w-lg z-10" data-aos="fade-up">
                 <!-- <span class="text-gold-500 tracking-[0.4em] uppercase text-xs font-semibold mb-3 block">Welcome to Excellence</span> -->
@@ -68,7 +115,7 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <button onclick="startExperience(true)" class="px-8 py-4 bg-gold-600 hover:bg-gold-500 text-dark font-semibold tracking-wider text-xs uppercase rounded-none transition-all duration-300 w-full sm:w-auto shadow-lg shadow-gold-600/10 hover:shadow-gold-500/20 transform hover:-translate-y-0.5">
+                    <button onclick="startExperience(true)" class="px-8 py-4 bg-gold-500 hover:bg-gold-400 text-dark font-semibold tracking-wider text-xs uppercase rounded-none transition-all duration-300 w-full sm:w-auto shadow-lg shadow-gold-600/10 hover:shadow-gold-500/20 transform hover:-translate-y-0.5">
                         <i class="fa-solid fa-volume-high mr-2"></i> Enter with Ambient Sound
                     </button>
                     <button onclick="startExperience(false)" class="px-8 py-4 border border-white/20 hover:border-gold-500 text-white hover:text-gold-400 font-semibold tracking-wider text-xs uppercase rounded-none transition-all duration-300 w-full sm:w-auto hover:bg-white/5">
@@ -124,7 +171,7 @@
         <!-- MOBILE NAVIGATION OVERLAY -->
         <div id="mobileMenu" class="fixed inset-0 bg-dark z-30 flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-500">
             <!-- Visual Accent Backdrop -->
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(197,154,47,0.06)_0%,transparent_60%)] pointer-events-none"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,107,47,0.06)_0%,transparent_60%)] pointer-events-none"></div>
             <nav class="flex flex-col space-y-8 text-center text-lg md:text-xl font-medium tracking-[0.25em] uppercase">
                 <a onclick="toggleMobileMenu()" href="#about" class="text-white hover:text-gold-400 transition-all duration-300">About Us</a>
                 <a onclick="toggleMobileMenu()" href="#projects" class="text-white hover:text-gold-400 transition-all duration-300">Our Projects</a>
@@ -146,7 +193,7 @@
                     <div class="absolute inset-0 bg-black/60 z-10"></div>
                     <!-- Premium High Quality loop representation of modern towers and city flow -->
                     <video class="w-full h-full object-cover" autoplay loop muted playsinline onerror="this.style.display='none'; document.getElementById('slide1-img').style.display='block';">
-                        <source src="https://assets.mixkit.co/videos/preview/mixkit-timelapse-of-a-modern-city-with-skyscrapers-at-night-41551-large.mp4" type="video/mp4">
+                        <source src="https://www.pexels.com/download/video/7101179/" type="video/mp4">
                     </video>
                     <img id="slide1-img" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=1920" class="absolute inset-0 w-full h-full object-cover hidden" alt="Cityscape Tower Skyline">
                 </div>
@@ -155,26 +202,32 @@
                 <div class="hero-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
                     <div class="absolute inset-0 bg-black/65 z-10"></div>
                     <video class="w-full h-full object-cover" autoplay loop muted playsinline onerror="this.style.display='none'; document.getElementById('slide2-img').style.display='block';">
-                        <source src="https://assets.mixkit.co/videos/preview/mixkit-hand-of-a-man-working-on-his-laptop-inside-an-airplane-41880-large.mp4" type="video/mp4">
+                        <source src="https://www.pexels.com/download/video/12731888/" type="video/mp4">
                     </video>
                     <img id="slide2-img" src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80&w=1920" class="absolute inset-0 w-full h-full object-cover hidden" alt="Private Jet Executive Travel">
                 </div>
 
                 <!-- Slide 3: Ultra Premium Ocean Resort (Image with Ken Burns) -->
-                <div class="hero-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                <!-- <div class="hero-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
                     <div class="absolute inset-0 bg-black/60 z-10"></div>
+                    <video class="w-full h-full object-cover" autoplay loop muted playsinline onerror="this.style.display='none'; document.getElementById('slide3-img').style.display='block';">
+                        <source src="https://www.pexels.com/download/video/35672605/" type="video/mp4">
+                    </video>
                     <div class="absolute inset-0 scale-105 animate-[pulse_8s_infinite] transition-transform duration-[8000ms]">
                         <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover" alt="Luxury Ocean Resort Destination">
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Slide 4: Desert Resort Oasis Atmosphere (Image) -->
-                <div class="hero-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                <!-- <div class="hero-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
                     <div class="absolute inset-0 bg-black/65 z-10"></div>
+                    <video class="w-full h-full object-cover" autoplay loop muted playsinline onerror="this.style.display='none'; document.getElementById('slide4-img').style.display='block';">
+                        <source src="https://www.pexels.com/download/video/33133596/" type="video/mp4">
+                    </video>
                     <div class="absolute inset-0">
                         <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover" alt="Magnificent Desert Resort Asset">
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <!-- Foreground Dynamic Narrative text -->
@@ -196,7 +249,7 @@
 
                 <!-- CTA Cluster -->
                 <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                    <a href="#projects" class="px-8 py-4 bg-gold-600 hover:bg-gold-500 text-dark font-bold text-xs uppercase tracking-[0.2em] rounded-none transition-all duration-300 transform hover:-translate-y-1 shadow-lg shadow-gold-600/10">
+                    <a href="#projects" class="px-8 py-4 bg-gold-500 hover:bg-gold-400 text-dark font-bold text-xs uppercase tracking-[0.2em] rounded-none transition-all duration-300 transform hover:-translate-y-1 shadow-lg shadow-gold-600/10">
                         Explore Assets
                     </a>
                     <a href="#model" class="px-8 py-4 border border-white/20 hover:border-gold-500 text-white hover:text-gold-400 font-bold text-xs uppercase tracking-[0.2em] rounded-none transition-all duration-300 bg-black/25 backdrop-blur-sm">
@@ -210,7 +263,7 @@
                 <div class="flex items-center space-x-2">
                     <span class="text-gold-400 font-bold" id="currentSlideLabel">01</span>
                     <span class="w-8 h-[1px] bg-white/20"></span>
-                    <span>04</span>
+                    <span>02</span>
                 </div>
                 
                 <a href="#about" class="animate-bounce flex flex-col items-center text-gray-300 hover:text-gold-500 transition-colors duration-300">
@@ -227,7 +280,7 @@
 
         <!-- 2. ABOUT US SECTION -->
         <section id="about" class="relative py-24 md:py-36 bg-dark overflow-hidden">
-            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[radial-gradient(circle_at_top_right,rgba(197,154,47,0.04)_0%,transparent_70%)] pointer-events-none"></div>
+            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[radial-gradient(circle_at_top_right,rgba(99,107,47,0.04)_0%,transparent_70%)] pointer-events-none"></div>
             <div class="max-w-7xl mx-auto px-6">
                 
                 <!-- Dynamic Grid -->
@@ -662,7 +715,6 @@
                 </div>
             </div>
         </section>
-
         <!-- 7. CONTACT US / SECURE INVESTOR PORTAL -->
         <section id="contact" class="py-24 md:py-36 bg-charcoal relative">
             <div class="max-w-7xl mx-auto px-6">
@@ -716,7 +768,7 @@
                             <h4 class="text-xs uppercase tracking-widest text-gold-500 font-bold mb-4">Institutional Presence</h4>
                             <div class="flex gap-4">
                                 <a href="#" class="w-12 h-12 rounded-none border border-white/10 hover:border-gold-500 text-white hover:text-gold-500 flex items-center justify-center transition-all duration-300"><i class="fa-brands fa-linkedin-in text-lg"></i></a>
-                                <a href="#" class="w-12 h-12 rounded-none border border-white/10 hover:border-gold-500 text-white hover:text-gold-500 flex items-center justify-center transition-all duration-300"><i class="fa-brands fa-x-twitter text-lg"></i></a>
+                                <a href="#" class="w-12 h-12 rounded-none border border-white/10 hover:border-gold-500 text-white hover:text-gold-500 flex items-center justify-center transition-all duration-300"><i class="fa-brands fa-facebook text-lg"></i></a>
                                 <a href="#" class="w-12 h-12 rounded-none border border-white/10 hover:border-gold-500 text-white hover:text-gold-500 flex items-center justify-center transition-all duration-300"><i class="fa-brands fa-instagram text-lg"></i></a>
                             </div>
                         </div>
@@ -727,27 +779,26 @@
                         <h3 class="font-serif text-3xl font-light text-white mb-2">Request Briefing</h3>
                         <p class="text-gray-400 text-xs font-light mb-8">Access to our private placement memorandums requires accreditation verification.</p>
                         
-                        <form id="contactForm" onsubmit="handleFormSubmission(event)" class="space-y-6">
+                        <form id="contactForm" class="space-y-6">
                             <div>
-                                <label class="block text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-2">Full Legal Name</label>
-                                <input type="text" required class="w-full bg-white/5 border border-white/10 focus:border-gold-500 p-4 text-white text-sm outline-none transition-colors duration-300 rounded-none">
+                                <label class="block text-[10px] uppercase tracking-widest text-gold-400 font-bold mb-2">Full Legal Name</label>
+                                <input type="text" name="full_name" required class="w-full bg-white/5 border border-white/10 focus:border-gold-500 p-4 text-white text-sm outline-none transition-colors duration-300 rounded-none">
                             </div>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label class="block text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-2">Private Email</label>
-                                    <input type="email" required class="w-full bg-white/5 border border-white/10 focus:border-gold-500 p-4 text-white text-sm outline-none transition-colors duration-300 rounded-none">
+                                    <label class="block text-[10px] uppercase tracking-widest text-gold-400 font-bold mb-2">Private Email</label>
+                                    <input type="email" name="email" required class="w-full bg-white/5 border border-white/10 focus:border-gold-500 p-4 text-white text-sm outline-none transition-colors duration-300 rounded-none">
                                 </div>
                                 <div>
-                                    <label class="block text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-2">Corporate Entity</label>
-                                    <input type="text" required class="w-full bg-white/5 border border-white/10 focus:border-gold-500 p-4 text-white text-sm outline-none transition-colors duration-300 rounded-none">
+                                    <label class="block text-[10px] uppercase tracking-widest text-gold-400 font-bold mb-2">Corporate Entity</label>
+                                    <input type="text" name="company" required class="w-full bg-white/5 border border-white/10 focus:border-gold-500 p-4 text-white text-sm outline-none transition-colors duration-300 rounded-none">
                                 </div>
                             </div>
-
                             <div>
-                                <label class="block text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-2">Bespoke Area of Interest</label>
-                                <select class="w-full bg-neutral-900 border border-white/10 focus:border-gold-500 p-4 text-gray-300 text-sm outline-none transition-colors duration-300 rounded-none">
-                                    <option>Select investment class...</option>
+                                <label class="block text-[10px] uppercase tracking-widest text-gold-400 font-bold mb-2">Bespoke Area of Interest</label>
+                                <select name="interest" required class="w-full bg-neutral-900 border border-white/10 focus:border-gold-500 p-4 text-gray-300 text-sm outline-none transition-colors duration-300 rounded-none">
+                                    <option value="" selected disabled>Select investment class...</option>
                                     <option>Ultra Luxury Housing Communities</option>
                                     <option>Exclusive Hospitality & Beach Resorts</option>
                                     <option>Commercial Trophy Real Estate</option>
@@ -756,26 +807,14 @@
                             </div>
 
                             <div>
-                                <label class="block text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-2">Inquiry Details</label>
-                                <textarea rows="4" required class="w-full bg-white/5 border border-white/10 focus:border-gold-500 p-4 text-white text-sm outline-none transition-colors duration-300 rounded-none resize-none"></textarea>
+                                <label class="block text-[10px] uppercase tracking-widest text-gold-400 font-bold mb-2">Inquiry Details</label>
+                                <textarea name="message" rows="4" required class="w-full bg-white/5 border border-white/10 focus:border-gold-500 p-4 text-white text-sm outline-none transition-colors duration-300 rounded-none resize-none"></textarea>
                             </div>
 
-                            <button type="submit" class="w-full py-4 bg-gold-600 hover:bg-gold-500 text-dark font-bold text-xs tracking-widest uppercase transition-all duration-300">
+                            <button id="contactSubmitButton" type="submit" class="w-full py-4 bg-gold-600 hover:bg-gold-400 disabled:opacity-60 disabled:cursor-not-allowed text-dark font-bold text-xs tracking-widest uppercase transition-all duration-300">
                                 Submit Secure Briefing Request
                             </button>
                         </form>
-
-                        <!-- Feedback message modal-like system -->
-                        <div id="formFeedback" class="hidden absolute inset-0 bg-dark/95 z-20 flex flex-col items-center justify-center text-center p-8 transition-opacity duration-300">
-                            <span class="w-16 h-16 rounded-full border border-gold-500/50 flex items-center justify-center text-gold-500 text-2xl mb-4"><i class="fa-solid fa-paper-plane"></i></span>
-                            <h3 class="font-serif text-2xl text-white mb-2">Briefing Sent</h3>
-                            <p class="text-gray-400 text-xs font-light max-w-sm leading-relaxed mb-6">
-                                Your institutional parameters have been logged. A representative from our Investor Relations office will initiate a contact protocol within 12 business hours.
-                            </p>
-                            <button onclick="resetContactForm()" class="px-6 py-2 border border-white/20 hover:border-gold-500 text-white text-xs uppercase tracking-widest font-semibold transition-all duration-300">
-                                Submit Another Request
-                            </button>
-                        </div>
                     </div>
 
                 </div>
@@ -840,6 +879,7 @@
 
         <!-- AOS (Animate On Scroll) JS Library -->
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             // Init Scroll Animation library
             AOS.init({
@@ -1015,19 +1055,64 @@
             }
 
             // Contact Form processing controller
-            function handleFormSubmission(event) {
+            const contactForm = document.getElementById('contactForm');
+            const contactSubmitButton = document.getElementById('contactSubmitButton');
+
+            async function handleFormSubmission(event) {
                 event.preventDefault();
-                const feedback = document.getElementById('formFeedback');
-                feedback.classList.remove('hidden');
-                feedback.classList.add('flex');
+
+                if (!contactForm || !contactSubmitButton) {
+                    return;
+                }
+
+                contactSubmitButton.disabled = true;
+                contactSubmitButton.textContent = 'Sending...';
+
+                try {
+                    const response = await fetch('contact.php', {
+                        method: 'POST',
+                        body: new FormData(contactForm),
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    });
+
+                    const result = await response.json().catch(() => ({
+                        success: false,
+                        message: 'Unexpected server response. Please try again.'
+                    }));
+
+                    if (!response.ok || !result.success) {
+                        throw new Error(result.message || 'Your request could not be sent right now.');
+                    }
+
+                    await Swal.fire({
+                        icon: 'success',
+                        title: 'Briefing Sent',
+                        text: result.message,
+                        confirmButtonColor: '#869244',
+                        background: '#141419',
+                        color: '#f5f5f5'
+                    });
+
+                    contactForm.reset();
+                } catch (error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Submission Failed',
+                        text: error.message || 'Something went wrong. Please try again.',
+                        confirmButtonColor: '#869244',
+                        background: '#141419',
+                        color: '#f5f5f5'
+                    });
+                } finally {
+                    contactSubmitButton.disabled = false;
+                    contactSubmitButton.textContent = 'Submit Secure Briefing Request';
+                }
             }
 
-            function resetContactForm() {
-                const feedback = document.getElementById('formFeedback');
-                const form = document.getElementById('contactForm');
-                feedback.classList.add('hidden');
-                feedback.classList.remove('flex');
-                form.reset();
+            if (contactForm) {
+                contactForm.addEventListener('submit', handleFormSubmission);
             }
         </script>
     </body>

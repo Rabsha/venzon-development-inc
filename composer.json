@@ -1,0 +1,8 @@
+{
+    "name": "venzon/development-inc",
+    "description": "Venzon Development contact form mailer integration",
+    "type": "project",
+    "require": {
+        "phpmailer/phpmailer": "^6.10"
+    }
+}
