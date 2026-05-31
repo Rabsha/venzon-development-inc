@@ -48,18 +48,17 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 $mail = new PHPMailer(true);
 
 try {
-    // Configure these on the server if you want PHPMailer to send through SMTP.
-    $smtpHost = trim((string) getenv('mail.rabshashakeel.com'));
-    $smtpUsername = trim((string) getenv('demo@rabshashakeel.com'));
-    $smtpPassword = (string) getenv(')+4B&dP1JdBfsytw');
-    $smtpPort = (int) (getenv('465') ?: 587);
-    $smtpEncryption = strtolower(trim((string) (getenv('MAIL_ENCRYPTION') ?: 'tls')));
+    $smtpHost = trim((string) (getenv('MAIL_HOST') ?: 'mail.rabshashakeel.com'));
+    $smtpUsername = trim((string) (getenv('MAIL_USERNAME') ?: 'demo@rabshashakeel.com'));
+    $smtpPassword = (string) (getenv('MAIL_PASSWORD') ?: ')+4B&dP1JdBfsytw');
+    $smtpPort = (int) (getenv('MAIL_PORT') ?: 465);
+    $smtpEncryption = strtolower(trim((string) (getenv('MAIL_ENCRYPTION') ?: 'ssl')));
 
     if ($smtpHost !== '') {
         $mail->isSMTP();
         $mail->Host = $smtpHost;
         $mail->Port = $smtpPort;
-        $mail->SMTPAuth = $smtpUsername !== '' || $smtpPassword !== '';
+        $mail->SMTPAuth = $smtpUsername !== '' && $smtpPassword !== '';
         $mail->Username = $smtpUsername;
         $mail->Password = $smtpPassword;
 
@@ -70,10 +69,10 @@ try {
         }
     }
 
-    $fromEmail = trim((string) (getenv('demo@rabshashakeel.com') ?: 'noreply@venzoncorporation.com'));
-    $fromName = trim((string) (getenv('Rabsha Shakeel') ?: 'Venzon Website'));
-    $toEmail = trim((string) (getenv('rabshasiddiqui@gmail.com') ?: 'invest@venzoncorporation.com'));
-    $toName = trim((string) (getenv('Rabsha') ?: 'Venzon Investor Relations'));
+    $fromEmail = trim((string) (getenv('MAIL_FROM_ADDRESS') ?: 'demo@rabshashakeel.com'));
+    $fromName = trim((string) (getenv('MAIL_FROM_NAME') ?: 'Rabsha Shakeel'));
+    $toEmail = trim((string) (getenv('MAIL_TO_ADDRESS') ?: 'info@venzongroup.com'));
+    $toName = trim((string) (getenv('MAIL_TO_NAME') ?: 'Venzon New Inquiry'));
 
     $safeName = htmlspecialchars($fullName, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     $safeEmail = htmlspecialchars($email, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
@@ -84,16 +83,78 @@ try {
     $mail->setFrom($fromEmail, $fromName);
     $mail->addAddress($toEmail, $toName);
     $mail->addReplyTo($email, $fullName);
+    $mail->addEmbeddedImage(__DIR__ . '/assets/images/white-logo-maindatee.png', 'venzon-logo', 'venzon-logo.png');
     $mail->isHTML(true);
     $mail->Subject = 'New Briefing Request from Venzon Website';
-    $mail->Body = "
-        <h2>New Contact Request</h2>
-        <p><strong>Full Name:</strong> {$safeName}</p>
-        <p><strong>Email:</strong> {$safeEmail}</p>
-        <p><strong>Company:</strong> {$safeCompany}</p>
-        <p><strong>Area of Interest:</strong> {$safeInterest}</p>
-        <p><strong>Inquiry Details:</strong><br>{$safeMessage}</p>
-    ";
+    $mail->Body = <<<HTML
+        <!doctype html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>New Briefing Request</title>
+        </head>
+        <body style="margin:0; padding:0; background:#0a0a0c; font-family:Arial, Helvetica, sans-serif; color:#f5f5f5;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#0a0a0c; padding:32px 16px;">
+                <tr>
+                    <td align="center">
+                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:640px; background:#141419; border:1px solid #434820;">
+                            <tr>
+                                <td style="padding:28px 30px; border-bottom:1px solid #434820; background:#101014;">
+                                    <img src="cid:venzon-logo" alt="Venzon" width="170" style="display:block; width:170px; max-width:100%; height:auto; margin:0 0 22px;">
+                                    <p style="margin:0 0 10px; color:#a6b360; font-size:11px; letter-spacing:3px; text-transform:uppercase; font-weight:bold;">Venzon Development</p>
+                                    <h1 style="margin:0; color:#ffffff; font-family:Georgia, 'Times New Roman', serif; font-size:30px; line-height:1.2; font-weight:400;">New Briefing Request</h1>
+                                    <p style="margin:12px 0 0; color:#b8b8b8; font-size:14px; line-height:1.6;">A new investor briefing inquiry has been submitted from the website contact form.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:30px;">
+                                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td style="padding:14px 0; border-bottom:1px solid #2a2a30;">
+                                                <p style="margin:0 0 6px; color:#a6b360; font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:bold;">Full Legal Name</p>
+                                                <p style="margin:0; color:#ffffff; font-size:16px;">{$safeName}</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:14px 0; border-bottom:1px solid #2a2a30;">
+                                                <p style="margin:0 0 6px; color:#a6b360; font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:bold;">Private Email</p>
+                                                <p style="margin:0; color:#ffffff; font-size:16px;"><a href="mailto:{$safeEmail}" style="color:#dde2bd; text-decoration:none;">{$safeEmail}</a></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:14px 0; border-bottom:1px solid #2a2a30;">
+                                                <p style="margin:0 0 6px; color:#a6b360; font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:bold;">Corporate Entity</p>
+                                                <p style="margin:0; color:#ffffff; font-size:16px;">{$safeCompany}</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:14px 0; border-bottom:1px solid #2a2a30;">
+                                                <p style="margin:0 0 6px; color:#a6b360; font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:bold;">Area Of Interest</p>
+                                                <p style="margin:0; color:#ffffff; font-size:16px;">{$safeInterest}</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:18px 0 0;">
+                                                <p style="margin:0 0 10px; color:#a6b360; font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:bold;">Inquiry Details</p>
+                                                <div style="margin:0; padding:18px; background:#0f0f13; border-left:3px solid #869244; color:#e8e8e8; font-size:15px; line-height:1.7;">{$safeMessage}</div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:18px 30px; background:#101014; border-top:1px solid #434820;">
+                                    <p style="margin:0; color:#888888; font-size:12px; line-height:1.6;">This message was generated by the Venzon website contact form.</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </body>
+        </html>
+    HTML;
     $mail->AltBody = "New Contact Request\n"
         . "Full Name: {$fullName}\n"
         . "Email: {$email}\n"

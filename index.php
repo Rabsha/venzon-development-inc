@@ -44,53 +44,6 @@
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <link href="assets/css/style.css" rel="stylesheet">
     </head>
-    <style>
-        body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: #0a0a0c;
-    color: #f3f4f6;
-    overflow-x: hidden;
-}
-.font-serif {
-    font-family: 'Playfair Display', serif;
-}
-/* Custom Loader Styles */
-.loader-overlay {
-    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
-}
-/* Custom scrollbar */
-::-webkit-scrollbar {
-    width: 6px;
-}
-::-webkit-scrollbar-track {
-    background: #0a0a0c;
-}
-::-webkit-scrollbar-thumb {
-    background: #636b2f;
-    border-radius: 3px;
-}
-/* Custom Glassmorphism */
-.glass {
-    background: rgba(10, 10, 12, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-.glass-light {
-    background: rgba(20, 20, 25, 0.5);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.03);
-}
-/* Zoom effect for backgrounds */
-.zoom-bg {
-    transition: transform 12s ease;
-}
-.group:hover .zoom-bg {
-    transform: scale(1.08);
-}
-
-    </style>
     <body class="bg-dark text-gray-100 antialiased selection:bg-gold-600 selection:text-white">
 
         <audio id="ambientAudio" loop preload="auto">
@@ -99,9 +52,12 @@
         </audio>
 
         <div id="loader" class="fixed inset-0 z-[100] bg-dark flex flex-col items-center justify-center p-6 loader-overlay">
+            <video class="absolute inset-0 w-full h-full object-cover opacity-30" autoplay loop muted playsinline>
+                <source src="assets/images/loadervideohere.mov" type="video/mp4">
+            </video>
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,107,47,0.08)_0%,transparent_70%)] pointer-events-none"></div>
             
-            <div class="text-center max-w-lg z-10" data-aos="fade-up">
+            <div class="text-center max-w-lg z-10 loader-content-delayed">
                 <!-- <span class="text-gold-500 tracking-[0.4em] uppercase text-xs font-semibold mb-3 block">Welcome to Excellence</span> -->
                 <h1 class="font-serif text-5xl md:text-7xl font-light text-white tracking-widest mb-6">
 
@@ -111,20 +67,20 @@
                 <div class="h-[1px] w-24 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mb-8"></div>
                 
                 <p class="text-gray-400 text-sm md:text-base font-light mb-12 leading-relaxed tracking-wide">
-                    Experience the atmosphere of bespoke assets. For the ultimate immersion, we suggest enabling our curated soundscape.
+                    Creative Generational Wealth Thru Real Estate
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <button onclick="startExperience(true)" class="px-8 py-4 bg-gold-500 hover:bg-gold-400 text-dark font-semibold tracking-wider text-xs uppercase rounded-none transition-all duration-300 w-full sm:w-auto shadow-lg shadow-gold-600/10 hover:shadow-gold-500/20 transform hover:-translate-y-0.5">
-                        <i class="fa-solid fa-volume-high mr-2"></i> Enter with Ambient Sound
+                        <i class="fa-solid fa-volume-high mr-2"></i> Enter
                     </button>
-                    <button onclick="startExperience(false)" class="px-8 py-4 border border-white/20 hover:border-gold-500 text-white hover:text-gold-400 font-semibold tracking-wider text-xs uppercase rounded-none transition-all duration-300 w-full sm:w-auto hover:bg-white/5">
+                    <!-- <button onclick="startExperience(false)" class="px-8 py-4 border border-white/20 hover:border-gold-500 text-white hover:text-gold-400 font-semibold tracking-wider text-xs uppercase rounded-none transition-all duration-300 w-full sm:w-auto hover:bg-white/5">
                         Enter Mutely
-                    </button>
+                    </button> -->
                 </div>
             </div>
             
-            <div class="absolute bottom-8 text-xs text-gray-500 tracking-wider">
+            <div class="absolute bottom-8 text-xs text-gray-500 tracking-wider loader-content-delayed">
                 Loading Venzon Development & Investment...
             </div>
         </div>
@@ -151,7 +107,7 @@
                     <a href="#about" class="hover:text-gold-400 transition-colors duration-300 py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold-500 hover:after:w-full after:transition-all after:duration-300">About Us</a>
                     <a href="#projects" class="hover:text-gold-400 transition-colors duration-300 py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold-500 hover:after:w-full after:transition-all after:duration-300">Projects</a>
                     <a href="#model" class="hover:text-gold-400 transition-colors duration-300 py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold-500 hover:after:w-full after:transition-all after:duration-300 font-bold">Our Model</a>
-                    <a href="#partners" class="hover:text-gold-400 transition-colors duration-300 py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold-500 hover:after:w-full after:transition-all after:duration-300">Partners</a>
+                    <a href="#strategy" class="hover:text-gold-400 transition-colors duration-300 py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold-500 hover:after:w-full after:transition-all after:duration-300">Our Strategy</a>
                     <a href="#mission" class="hover:text-gold-400 transition-colors duration-300 py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold-500 hover:after:w-full after:transition-all after:duration-300">Mission</a>
                     <a href="#contact" class="px-5 py-2.5 border border-gold-500/30 text-gold-400 hover:bg-gold-500 hover:text-dark transition-all duration-300">Contact Us</a>
                 </nav>
@@ -176,7 +132,7 @@
                 <a onclick="toggleMobileMenu()" href="#about" class="text-white hover:text-gold-400 transition-all duration-300">About Us</a>
                 <a onclick="toggleMobileMenu()" href="#projects" class="text-white hover:text-gold-400 transition-all duration-300">Our Projects</a>
                 <a onclick="toggleMobileMenu()" href="#model" class="text-white hover:text-gold-400 transition-all duration-300">Our Model</a>
-                <a onclick="toggleMobileMenu()" href="#partners" class="text-white hover:text-gold-400 transition-all duration-300">Partners</a>
+                <a onclick="toggleMobileMenu()" href="#strategy" class="text-white hover:text-gold-400 transition-all duration-300">Our Strategy</a>
                 <a onclick="toggleMobileMenu()" href="#mission" class="text-white hover:text-gold-400 transition-all duration-300">Our Mission</a>
                 <a onclick="toggleMobileMenu()" href="#contact" class="inline-block px-8 py-3 bg-gold-600 text-dark font-bold text-sm tracking-widest rounded-none transition-all duration-300 mt-4">Contact Us</a>
             </nav>
@@ -193,19 +149,19 @@
                     <div class="absolute inset-0 bg-black/60 z-10"></div>
                     <!-- Premium High Quality loop representation of modern towers and city flow -->
                     <video class="w-full h-full object-cover" autoplay loop muted playsinline onerror="this.style.display='none'; document.getElementById('slide1-img').style.display='block';">
-                        <source src="https://www.pexels.com/download/video/7101179/" type="video/mp4">
+                        <source src="assets/images/loadervideohere.mov" type="video/mp4">
                     </video>
-                    <img id="slide1-img" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=1920" class="absolute inset-0 w-full h-full object-cover hidden" alt="Cityscape Tower Skyline">
+                    <!-- <img id="slide1-img" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=1920" class="absolute inset-0 w-full h-full object-cover hidden" alt="Cityscape Tower Skyline"> -->
                 </div>
 
                 <!-- Slide 2: High Net Worth / Private Jet Atmosphere (Video) -->
-                <div class="hero-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                <!-- <div class="hero-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
                     <div class="absolute inset-0 bg-black/65 z-10"></div>
                     <video class="w-full h-full object-cover" autoplay loop muted playsinline onerror="this.style.display='none'; document.getElementById('slide2-img').style.display='block';">
-                        <source src="https://www.pexels.com/download/video/12731888/" type="video/mp4">
-                    </video>
-                    <img id="slide2-img" src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80&w=1920" class="absolute inset-0 w-full h-full object-cover hidden" alt="Private Jet Executive Travel">
-                </div>
+                        <source src="assets/images/loadervideohere.mov" type="video/mp4">
+                    </video> -->
+                    <!-- <img id="slide2-img" src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80&w=1920" class="absolute inset-0 w-full h-full object-cover hidden" alt="Private Jet Executive Travel"> -->
+                <!-- </div> -->
 
                 <!-- Slide 3: Ultra Premium Ocean Resort (Image with Ken Burns) -->
                 <!-- <div class="hero-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
@@ -239,18 +195,18 @@
                 </div>
 
                 <!-- Monumental Premium Font Statement -->
-                <h2 class="font-serif text-5xl md:text-8xl font-light text-white leading-tight tracking-tight mb-6">
-                    Redefining <span class="italic text-gold-400 block sm:inline">Exquisite</span> Architecture
+                <h2 class="font-serif text-5xl md:text-7xl font-light text-white leading-tight tracking-tight mb-6">
+                    Design Centric <span class="italic text-gold-400 block sm:inline">Sustainable</span> Development
                 </h2>
 
                 <p class="text-gray-300 text-base md:text-xl font-light max-w-2xl leading-relaxed tracking-wide mb-10 text-center">
-                    Acquiring, developing, and operating world-class housing, commercial spaces, and premium luxury resorts across global frontiers.
+                    Developing, and operating world-class housing, and premium luxury resorts across globe.
                 </p>
 
                 <!-- CTA Cluster -->
                 <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                    <a href="#projects" class="px-8 py-4 bg-gold-500 hover:bg-gold-400 text-dark font-bold text-xs uppercase tracking-[0.2em] rounded-none transition-all duration-300 transform hover:-translate-y-1 shadow-lg shadow-gold-600/10">
-                        Explore Assets
+                    <a href="#strategy" class="px-8 py-4 bg-gold-500 hover:bg-gold-400 text-dark font-bold text-xs uppercase tracking-[0.2em] rounded-none transition-all duration-300 transform hover:-translate-y-1 shadow-lg shadow-gold-600/10">
+                        Our Investment Strategy
                     </a>
                     <a href="#model" class="px-8 py-4 border border-white/20 hover:border-gold-500 text-white hover:text-gold-400 font-bold text-xs uppercase tracking-[0.2em] rounded-none transition-all duration-300 bg-black/25 backdrop-blur-sm">
                         Our Investment Model
@@ -263,7 +219,7 @@
                 <div class="flex items-center space-x-2">
                     <span class="text-gold-400 font-bold" id="currentSlideLabel">01</span>
                     <span class="w-8 h-[1px] bg-white/20"></span>
-                    <span>02</span>
+                    <span>01</span>
                 </div>
                 
                 <a href="#about" class="animate-bounce flex flex-col items-center text-gray-300 hover:text-gold-500 transition-colors duration-300">
@@ -293,30 +249,31 @@
                         
                         <div class="overflow-hidden relative group">
                             <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent z-10 opacity-60"></div>
-                            <img src="https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&q=80&w=1200" alt="Executive Architecture Team" class="w-full h-[500px] object-cover zoom-bg">
+                            <img src="assets/images/aboutus.jpeg" alt="Executive Architecture Team" class="w-full h-[500px] object-cover zoom-bg">
                         </div>
 
                         <!-- Floater Statistic metrics -->
-                        <div class="absolute bottom-8 left-8 glass p-6 z-20 max-w-xs" data-aos="fade-up" data-aos-delay="200">
+                        <!-- <div class="absolute bottom-8 left-8 glass p-6 z-20 max-w-xs" data-aos="fade-up" data-aos-delay="200">
                             <h4 class="font-serif text-3xl font-light text-white"><span class="text-gold-500">$2.4B+</span></h4>
                             <p class="text-[10px] uppercase tracking-wider text-gray-400 mt-1">Acquired & Managed Transaction Volume</p>
-                        </div>
+                        </div> -->
                     </div>
 
                     <!-- Text Presentation -->
                     <div class="lg:col-span-7 flex flex-col justify-center" data-aos="fade-left">
-                        <span class="text-gold-500 uppercase tracking-[0.4em] text-xs font-bold mb-4 block">01 // Who We Are</span>
+                        <span class="text-gold-500 uppercase tracking-[0.4em] text-xs font-bold mb-4 block">Creating Value</span>
                         <h2 class="font-serif text-4xl md:text-6xl font-light text-white leading-tight mb-8">
-                            Architecting Generational Landmarks
+                            Thru Real Estate Developers
                         </h2>
                         <div class="w-20 h-[1px] bg-gold-500 mb-8"></div>
                         
                         <p class="text-gray-300 text-base md:text-lg font-light leading-relaxed mb-6">
-                            VENZON is a premier private real estate investment and master development corporation. We acquire, entitle, construct, and operate iconic trophy assets that command exceptional yields and stand as emblems of design brilliance.
+                            VENZON is a california based premier private real estate investment and master development corporation. We acquire, entitle, construct, and operate iconic trophy assets that command exceptional yields and stand as emblems of design brilliance.
                         </p>
                         
                         <p class="text-gray-400 text-sm md:text-base font-light leading-relaxed mb-8">
-                            Our pedigree is rooted in recognizing undervalued opportunities, transforming raw land into master-planned communities, creating bespoke resorts, and delivering superior risk-adjusted returns to our global investors.
+                            <!-- Our pedigree is rooted in recognizing undervalued opportunities, transforming raw land into master-planned communities, creating bespoke resorts, and delivering superior risk-adjusted returns to our global investors. -->
+                            Lead by a team of professionals with over 40 years of Experience in Real Estate / Hospitality Industry Worldwide.
                         </p>
 
                         <!-- Focus Columns -->
@@ -364,13 +321,10 @@
                         All Projects
                     </button>
                     <button onclick="filterGallery('housing')" class="gallery-tab px-6 py-2.5 text-xs uppercase tracking-widest font-semibold text-gray-400 hover:text-white border border-white/10 hover:border-white/30 transition-all duration-300">
-                        Housing
+                        Residential
                     </button>
                     <button onclick="filterGallery('hospitality')" class="gallery-tab px-6 py-2.5 text-xs uppercase tracking-widest font-semibold text-gray-400 hover:text-white border border-white/10 hover:border-white/30 transition-all duration-300">
                         Hospitality
-                    </button>
-                    <button onclick="filterGallery('commercial')" class="gallery-tab px-6 py-2.5 text-xs uppercase tracking-widest font-semibold text-gray-400 hover:text-white border border-white/10 hover:border-white/30 transition-all duration-300">
-                        Commercial
                     </button>
                 </div>
 
@@ -382,8 +336,8 @@
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10 transition-opacity duration-300"></div>
                         <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover zoom-bg" alt="Lumina Towers Residential">
                         <div class="absolute bottom-0 left-0 right-0 p-8 z-20">
-                            <span class="text-gold-500 text-[10px] uppercase tracking-[0.3em] block mb-2">Residential Real Estate</span>
-                            <h3 class="font-serif text-2xl font-light text-white mb-3">Lumina Residences</h3>
+                            <!-- <span class="text-gold-500 text-[10px] uppercase tracking-[0.3em] block mb-2">Residential Real Estate</span> -->
+                            <h3 class="font-serif text-2xl font-light text-white mb-3">Apartments</h3>
                             <p class="text-gray-300 text-xs font-light leading-relaxed mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                 Ultra-luxury residential community situated in the heart of urban elegance, complete with modern private helipads.
                             </p>
@@ -396,8 +350,8 @@
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10 transition-opacity duration-300"></div>
                         <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover zoom-bg" alt="Oasis Sands Desert Resort">
                         <div class="absolute bottom-0 left-0 right-0 p-8 z-20">
-                            <span class="text-gold-500 text-[10px] uppercase tracking-[0.3em] block mb-2">Bespoke Hospitality</span>
-                            <h3 class="font-serif text-2xl font-light text-white mb-3">Sands Marina Resort</h3>
+                            <!-- <span class="text-gold-500 text-[10px] uppercase tracking-[0.3em] block mb-2">Bespoke Hospitality</span> -->
+                            <h3 class="font-serif text-2xl font-light text-white mb-3">Town Homes</h3>
                             <p class="text-gray-300 text-xs font-light leading-relaxed mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                 A stunning coastal wellness sanctuary and oceanfront haven boasting uninterrupted views of tropical horizons.
                             </p>
@@ -410,52 +364,10 @@
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10 transition-opacity duration-300"></div>
                         <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover zoom-bg" alt="Venzon One Corporate Hub">
                         <div class="absolute bottom-0 left-0 right-0 p-8 z-20">
-                            <span class="text-gold-500 text-[10px] uppercase tracking-[0.3em] block mb-2">Commercial Hub</span>
-                            <h3 class="font-serif text-2xl font-light text-white mb-3">Venzon One Corporate Plaza</h3>
+                            <!-- <span class="text-gold-500 text-[10px] uppercase tracking-[0.3em] block mb-2">Commercial Hub</span> -->
+                            <h3 class="font-serif text-2xl font-light text-white mb-3">Hospitalty</h3>
                             <p class="text-gray-300 text-xs font-light leading-relaxed mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                                 Class-A high rise structures optimized for international institutions, incorporating cutting-edge sustainable certifications.
-                            </p>
-                            <span class="text-xs text-white underline tracking-widest uppercase cursor-pointer group-hover:text-gold-400 transition-colors duration-300">View Asset Specifications</span>
-                        </div>
-                    </div>
-
-                    <!-- Project 4 (Hospitality - Desert) -->
-                    <div class="gallery-item hospitality group relative overflow-hidden bg-dark aspect-[4/5]" data-aos="fade-up">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10 transition-opacity duration-300"></div>
-                        <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover zoom-bg" alt="Dunes Retreat Desert">
-                        <div class="absolute bottom-0 left-0 right-0 p-8 z-20">
-                            <span class="text-gold-500 text-[10px] uppercase tracking-[0.3em] block mb-2">Bespoke Hospitality</span>
-                            <h3 class="font-serif text-2xl font-light text-white mb-3">The Dunes Retreat & Oasis</h3>
-                            <p class="text-gray-300 text-xs font-light leading-relaxed mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                Immersive high-end villas nestled inside dramatic red sand desert canyons, redefining exclusive adventure.
-                            </p>
-                            <span class="text-xs text-white underline tracking-widest uppercase cursor-pointer group-hover:text-gold-400 transition-colors duration-300">View Asset Specifications</span>
-                        </div>
-                    </div>
-
-                    <!-- Project 5 (Housing) -->
-                    <div class="gallery-item housing group relative overflow-hidden bg-dark aspect-[4/5]" data-aos="fade-up" data-aos-delay="100">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10 transition-opacity duration-300"></div>
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover zoom-bg" alt="Aurelia Estate Mansions">
-                        <div class="absolute bottom-0 left-0 right-0 p-8 z-20">
-                            <span class="text-gold-500 text-[10px] uppercase tracking-[0.3em] block mb-2">Luxury Living Estates</span>
-                            <h3 class="font-serif text-2xl font-light text-white mb-3">Aurelia Estate Mansions</h3>
-                            <p class="text-gray-300 text-xs font-light leading-relaxed mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                Ultra-private compound dwellings providing unparalleled spatial isolation, pristine private pools, and bespoke automated tech.
-                            </p>
-                            <span class="text-xs text-white underline tracking-widest uppercase cursor-pointer group-hover:text-gold-400 transition-colors duration-300">View Asset Specifications</span>
-                        </div>
-                    </div>
-
-                    <!-- Project 6 (Commercial) -->
-                    <div class="gallery-item commercial group relative overflow-hidden bg-dark aspect-[4/5]" data-aos="fade-up" data-aos-delay="200">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10 transition-opacity duration-300"></div>
-                        <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover zoom-bg" alt="Apex Tech Hub Building">
-                        <div class="absolute bottom-0 left-0 right-0 p-8 z-20">
-                            <span class="text-gold-500 text-[10px] uppercase tracking-[0.3em] block mb-2">Corporate Core Asset</span>
-                            <h3 class="font-serif text-2xl font-light text-white mb-3">Apex Enterprise Towers</h3>
-                            <p class="text-gray-300 text-xs font-light leading-relaxed mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                A magnificent LEED-Platinum business complex built using revolutionary solar glass facades and green engineering.
                             </p>
                             <span class="text-xs text-white underline tracking-widest uppercase cursor-pointer group-hover:text-gold-400 transition-colors duration-300">View Asset Specifications</span>
                         </div>
@@ -466,8 +378,8 @@
             </div>
         </section>
 
-        <!-- 4. OUR PROPRIETARY DEVELOPMENT MODEL -->
-        <section id="model" class="py-24 md:py-36 bg-dark relative overflow-hidden">
+        <!-- 4. Investment Strategy -->
+        <section id="strategy" class="py-24 md:py-36 bg-dark relative overflow-hidden">
             <!-- Structural Abstract background lines -->
             <div class="absolute inset-0 opacity-5 pointer-events-none">
                 <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -485,83 +397,139 @@
                 <!-- Section Title -->
                 <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
                     <span class="text-gold-500 uppercase tracking-[0.4em] text-xs font-bold mb-4 block">03 // The Blueprint</span>
-                    <h2 class="font-serif text-4xl md:text-6xl font-light text-white leading-tight">Our Structured Investment Lifecycle</h2>
+                    <h2 class="font-serif text-4xl md:text-6xl font-light text-white leading-tight">Our Investment Strategy</h2>
                     <p class="text-gray-400 text-sm md:text-base font-light mt-6 leading-relaxed">
                         A rigorous five-stage approach designed to mitigate execution risk while unlocking unparalleled alpha for private family offices and institutions.
                     </p>
                 </div>
 
-                <!-- The Five Stages Cycle Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 relative">
-                    
-                    <!-- Step 1 -->
-                    <div class="group relative bg-charcoal p-8 border border-white/5 hover:border-gold-500/40 transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between" data-aos="fade-up">
-                        <div>
-                            <span class="font-serif text-5xl font-extralight text-gold-500/30 group-hover:text-gold-400 transition-colors duration-300">01</span>
-                            <h3 class="text-white text-lg font-semibold tracking-wider uppercase mt-4 mb-3">Acquisition</h3>
+                <div class="space-y-10">
+
+                    <!-- DEVELOPMENT -->
+                    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)] gap-6 items-stretch">
+
+                        <div class="group bg-charcoal p-8 border border-white/5 hover:border-gold-500/40 transition-all duration-300" style="display: flex;flex-direction: column;justify-content: center;">
+                            <h3 class="text-white text-lg font-semibold tracking-wider uppercase">
+                                Development
+                            </h3>
+                            <p class="text-gray-400 text-xs mt-3">
+                                Ground up construction multiplies equity at the entry of any Deal.
+                            </p>
+                        </div>
+
+                        <div class="flex items-center justify-center text-gold-500 text-2xl">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+
+                        <div class="group bg-charcoal p-8 border border-white/5 hover:border-gold-500/40 transition-all duration-300">
+                            <span class="font-serif text-5xl text-gold-500/30">01</span>
+                            <h3 class="text-white text-lg font-semibold uppercase mt-4">
+                                Acquisition
+                            </h3>
                             <p class="text-gray-400 text-xs font-light leading-relaxed">
                                 Underwriting undervalued urban locations and beachfront reserves through extensive mathematical models and hyper-local networks.
                             </p>
+                            <div class="mt-8 pt-4 border-t border-white/5 text-[10px] text-gold-500 tracking-widest uppercase font-bold group-hover:translate-x-1 transition-transform duration-300">
+                                6 Months <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </div>
                         </div>
-                        <div class="mt-8 pt-4 border-t border-white/5 text-[10px] text-gold-500 tracking-widest uppercase font-bold group-hover:translate-x-1 transition-transform duration-300">
-                            Deep Due Diligence <i class="fa-solid fa-arrow-right ml-1"></i>
-                        </div>
-                    </div>
 
-                    <!-- Step 2 -->
-                    <div class="group relative bg-charcoal p-8 border border-white/5 hover:border-gold-500/40 transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
-                        <div>
-                            <span class="font-serif text-5xl font-extralight text-gold-500/30 group-hover:text-gold-400 transition-colors duration-300">02</span>
-                            <h3 class="text-white text-lg font-semibold tracking-wider uppercase mt-4 mb-3">Entitlements</h3>
+                        <div class="flex items-center justify-center text-gold-500 text-2xl">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+
+                        <div class="group bg-charcoal p-8 border border-white/5 hover:border-gold-500/40 transition-all duration-300">
+                            <span class="font-serif text-5xl text-gold-500/30">02</span>
+                            <h3 class="text-white text-lg font-semibold uppercase mt-4">
+                                Entitlements
+                            </h3>
                             <p class="text-gray-400 text-xs font-light leading-relaxed">
                                 Navigating complex municipal zoning, securing government permits, environmental clearances, and optimal master-plan designs.
                             </p>
+                            <div class="mt-8 pt-4 border-t border-white/5 text-[10px] text-gold-500 tracking-widest uppercase font-bold group-hover:translate-x-1 transition-transform duration-300">
+                                1 Year <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </div>
                         </div>
-                        <div class="mt-8 pt-4 border-t border-white/5 text-[10px] text-gold-500 tracking-widest uppercase font-bold group-hover:translate-x-1 transition-transform duration-300">
-                            Value Generation <i class="fa-solid fa-arrow-right ml-1"></i>
+
+                        <div class="flex items-center justify-center text-gold-500 text-2xl">
+                            <i class="fa-solid fa-arrow-right"></i>
                         </div>
+
+                        <div class="group bg-charcoal p-8 border border-white/5 hover:border-gold-500/40 transition-all duration-300">
+                            <span class="font-serif text-5xl text-gold-500/30">03</span>
+                            <h3 class="text-white text-lg font-semibold uppercase mt-4">
+                                Construction
+                            </h3>
+                            <p class="text-gray-400 text-xs font-light leading-relaxed">
+                                Partnering with Tier-1 general contractors to build luxury assets. Strict quality assurance, budget policing, and timely handover.
+                            </p>
+                            <div class="mt-8 pt-4 border-t border-white/5 text-[10px] text-gold-500 tracking-widest uppercase font-bold group-hover:translate-x-1 transition-transform duration-300">
+                                1 Year 6 Months <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <!-- Step 3 -->
-                    <div class="group relative bg-charcoal p-8 border border-white/5 hover:border-gold-500/40 transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
-                        <div>
-                            <span class="font-serif text-5xl font-extralight text-gold-500/30 group-hover:text-gold-400 transition-colors duration-300">03</span>
-                            <h3 class="text-white text-lg font-semibold tracking-wider uppercase mt-4 mb-3">Construction</h3>
-                            <p class="text-gray-400 text-xs font-light leading-relaxed">
-                                Partnering with Tier-1 general contractors to erect luxury assets. Strict quality assurance, budget policing, and timely handover.
+                    <!-- MANAGEMENT -->
+                    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] gap-6 items-stretch">
+
+                        <div class="group bg-charcoal p-8 border border-white/5 hover:border-gold-500/40 transition-all duration-300" style="display: flex;flex-direction: column;justify-content: center;">
+                            <h3 class="text-white text-lg font-semibold tracking-wider uppercase">
+                                Management
+                            </h3>
+                            <p class="text-gray-400 text-xs mt-3">
+                                In house property management driven by technology.
                             </p>
                         </div>
-                        <div class="mt-8 pt-4 border-t border-white/5 text-[10px] text-gold-500 tracking-widest uppercase font-bold group-hover:translate-x-1 transition-transform duration-300">
-                            Execution Excellence <i class="fa-solid fa-arrow-right ml-1"></i>
-                        </div>
-                    </div>
 
-                    <!-- Step 4 -->
-                    <div class="group relative bg-charcoal p-8 border border-white/5 hover:border-gold-500/40 transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
-                        <div>
-                            <span class="font-serif text-5xl font-extralight text-gold-500/30 group-hover:text-gold-400 transition-colors duration-300">04</span>
-                            <h3 class="text-white text-lg font-semibold tracking-wider uppercase mt-4 mb-3">Lease & Hold</h3>
+                        <div class="flex items-center justify-center text-gold-500 text-2xl">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+
+                        <div class="group bg-charcoal p-8 border border-white/5 hover:border-gold-500/40 transition-all duration-300">
+                            <span class="font-serif text-5xl text-gold-500/30">04</span>
+                            <h3 class="text-white text-lg font-semibold uppercase mt-4">
+                                Lease & Hold
+                            </h3>
                             <p class="text-gray-400 text-xs font-light leading-relaxed">
                                 Stabilizing asset occupancy. Securing ultra-premium commercial operators and luxury tenants to ensure consistent cash flow.
                             </p>
+                            <div class="mt-8 pt-4 border-t border-white/5 text-[10px] text-gold-500 tracking-widest uppercase font-bold group-hover:translate-x-1 transition-transform duration-300">
+                                3 years <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </div>
                         </div>
-                        <div class="mt-8 pt-4 border-t border-white/5 text-[10px] text-gold-500 tracking-widest uppercase font-bold group-hover:translate-x-1 transition-transform duration-300">
-                            Asset Stabilization <i class="fa-solid fa-arrow-right ml-1"></i>
-                        </div>
+
                     </div>
 
-                    <!-- Step 5 -->
-                    <div class="group relative bg-charcoal p-8 border border-white/5 hover:border-gold-500/40 transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="400">
-                        <div>
-                            <span class="font-serif text-5xl font-extralight text-gold-500/30 group-hover:text-gold-400 transition-colors duration-300">05</span>
-                            <h3 class="text-white text-lg font-semibold tracking-wider uppercase mt-4 mb-3">Bespoke Exit</h3>
+                    <!-- SALES / EXIT -->
+                    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] gap-6 items-stretch">
+
+                        <div class="group bg-charcoal p-8 border border-white/5 hover:border-gold-500/40 transition-all duration-300" style="display: flex;flex-direction: column;justify-content: center;">
+                            <h3 class="text-white text-lg font-semibold tracking-wider uppercase">
+                                Sales / Exit
+                            </h3>
+                            <p class="text-gray-400 text-xs mt-3">
+                                Marketing & Sales to institutional Funds / Investment.
+                            </p>
+                        </div>
+
+                        <div class="flex items-center justify-center text-gold-500 text-2xl">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+
+                        <div class="group bg-charcoal p-8 border border-white/5 hover:border-gold-500/40 transition-all duration-300">
+                            <span class="font-serif text-5xl text-gold-500/30">05</span>
+                            <h3 class="text-white text-lg font-semibold uppercase mt-4">
+                                Bespoke Exit
+                            </h3>
                             <p class="text-gray-400 text-xs font-light leading-relaxed">
                                 Securing institutional recapitalization, secondary offerings, or direct luxury portfolio sales to yield exceptional multiples.
                             </p>
+                            <div class="mt-8 pt-4 border-t border-white/5 text-[10px] text-gold-500 tracking-widest uppercase font-bold group-hover:translate-x-1 transition-transform duration-300">
+                                6 Years <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </div>
                         </div>
-                        <div class="mt-8 pt-4 border-t border-white/5 text-[10px] text-gold-500 tracking-widest uppercase font-bold group-hover:translate-x-1 transition-transform duration-300">
-                            Realize Gains <i class="fa-solid fa-check ml-1"></i>
-                        </div>
+
                     </div>
 
                 </div>
@@ -569,105 +537,90 @@
             </div>
         </section>
 
-        <!-- 5. OUR PARTNERS (Architects, Contractors, Advisors, Legal) -->
-        <section id="partners" class="py-24 md:py-36 bg-charcoal relative">
-            <div class="max-w-7xl mx-auto px-6">
+        <!-- 5. Investment Model -->
+        <section id="model" class="py-24 md:py-36 bg-charcoal relative">
+            <div class="max-w-7xl mx-auto px-6 relative z-10">
                 
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-                    
-                    <!-- Left sticky column -->
-                    <div class="lg:col-span-4 lg:sticky lg:top-32" data-aos="fade-right">
-                        <span class="text-gold-500 uppercase tracking-[0.4em] text-xs font-bold mb-4 block">04 // Elite Synergy</span>
-                        <h2 class="font-serif text-4xl md:text-6xl font-light text-white leading-tight mb-6">
-                            The Alliance of Masters
-                        </h2>
-                        <div class="w-20 h-[1px] bg-gold-500 mb-6"></div>
-                        <p class="text-gray-400 text-sm md:text-base font-light leading-relaxed">
-                            To construct monumental assets, we collaborate with internationally acclaimed agencies, structural masterminds, legal forces, and tax savants.
-                        </p>
+                <!-- Section Title -->
+                <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
+                    <span class="text-gold-500 uppercase tracking-[0.4em] text-xs font-bold mb-4 block">04 // The Blueprint</span>
+                    <h2 class="font-serif text-4xl md:text-6xl font-light text-white leading-tight">Our Investment Model</h2>
+                    <p class="text-gray-400 text-sm md:text-base font-light mt-6 leading-relaxed">
+                        We use GP/UP Model where venzon acts as general partner & equity investors as limited partners. Property title is head in LP Name & Venzon signs a Development contract with LP.
+                    </p>
+                </div>
+
+                <div class="space-y-10">
+
+                    <!-- DEVELOPMENT -->
+                    <div class="grid grid-cols-1 lg:grid-cols-[1.5fr_auto_1fr_auto_1fr] gap-6 items-stretch">
+
+                        <div class="group bg-charcoal p-8 border border-white/5 hover:border-gold-500/40 transition-all duration-300" style="display: flex;flex-direction: column;justify-content: center;">
+                            <h3 class="text-white text-lg font-semibold tracking-wider uppercase">
+                                Equity
+                            </h3>
+                        </div>
+
+                        <div class="flex items-center justify-center text-gold-500 text-2xl">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+
+                        <div class="group bg-charcoal p-8 border border-white/5 hover:border-gold-500/40 transition-all duration-300">
+                            <span class="font-serif text-5xl text-gold-500/30">01</span>
+                            <h3 class="text-white text-lg font-semibold uppercase mt-4">
+                                Venzon 20%
+                            </h3>
+                            <p class="text-gray-400 text-xs font-light leading-relaxed">
+                                We invest a min of 20% Equity in most projects thru Venzon Affiliation funds as limited partner.
+                            </p>
+                            <!-- <div class="mt-8 pt-4 border-t border-white/5 text-[10px] text-gold-500 tracking-widest uppercase font-bold group-hover:translate-x-1 transition-transform duration-300">
+                                6 Months <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </div> -->
+                        </div>
+
+                        <div class="flex items-center justify-center text-gold-500 text-2xl">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+
+                        <div class="group bg-charcoal p-8 border border-white/5 hover:border-gold-500/40 transition-all duration-300">
+                            <span class="font-serif text-5xl text-gold-500/30">02</span>
+                            <h3 class="text-white text-lg font-semibold uppercase mt-4">
+                                Private Investment 80%
+                            </h3>
+                            <p class="text-gray-400 text-xs font-light leading-relaxed">
+                                Accredited Investors Being in 80% of Equity as limited partners.
+                            </p>
+                            <!-- <div class="mt-8 pt-4 border-t border-white/5 text-[10px] text-gold-500 tracking-widest uppercase font-bold group-hover:translate-x-1 transition-transform duration-300">
+                                1 Year <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </div> -->
+                        </div>
+
                     </div>
 
-                    <!-- Right list columns -->
-                    <div class="lg:col-span-8 space-y-8" data-aos="fade-left">
-                        
-                        <!-- Partner Card 1: Master Architects -->
-                        <div class="glass p-8 hover:border-gold-500/30 transition-all duration-300">
-                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                                <div>
-                                    <span class="text-xs uppercase tracking-widest text-gold-500 font-bold block mb-1">Lead Master Architects</span>
-                                    <h3 class="font-serif text-2xl text-white font-light">Ashai Design Corporation</h3>
-                                    <p class="text-gray-400 text-xs font-light mt-2 max-w-xl">
-                                        Pioneering timeless structural form, integrating modern clean geometry, climate resiliency, and organic luxury seamlessly into our physical master plans.
-                                    </p>
-                                </div>
-                                <div class="text-xs text-white uppercase tracking-widest py-2 px-4 border border-white/10 shrink-0">
-                                    Architectural Design Partner
-                                </div>
-                            </div>
+                    <!-- MANAGEMENT -->
+                    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] gap-6 items-stretch">
+
+                        <div class="group bg-charcoal p-8 border border-white/5 hover:border-gold-500/40 transition-all duration-300" style="display: flex;flex-direction: column;justify-content: center;">
+                            <h3 class="text-white text-lg font-semibold tracking-wider uppercase">
+                                Institutional / Debt
+                            </h3>
                         </div>
 
-                        <!-- Partner Card 2: Contractors -->
-                        <div class="glass p-8 hover:border-gold-500/30 transition-all duration-300">
-                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                                <div>
-                                    <span class="text-xs uppercase tracking-widest text-gold-500 font-bold block mb-1">Preeminent Engineering</span>
-                                    <h3 class="font-serif text-2xl text-white font-light">ACI Contractors</h3>
-                                    <p class="text-gray-400 text-xs font-light mt-2 max-w-xl">
-                                        Renowned tier-1 master construct builders executing multi-million dollar structural blueprints on exact margins and stringent schedules.
-                                    </p>
-                                </div>
-                                <div class="text-xs text-white uppercase tracking-widest py-2 px-4 border border-white/10 shrink-0">
-                                    General Contracting Partner
-                                </div>
-                            </div>
+                        <div class="flex items-center justify-center text-gold-500 text-2xl">
+                            <i class="fa-solid fa-arrow-right"></i>
                         </div>
 
-                        <!-- Partner Card 3: Management -->
-                        <div class="glass p-8 hover:border-gold-500/30 transition-all duration-300">
-                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                                <div>
-                                    <span class="text-xs uppercase tracking-widest text-gold-500 font-bold block mb-1">World Class Asset Operators</span>
-                                    <h3 class="font-serif text-2xl text-white font-light">Sarai Wow Hospitality</h3>
-                                    <p class="text-gray-400 text-xs font-light mt-2 max-w-xl">
-                                        Managing daily bespoke resort protocols, high-touch luxury concierge services, private jet coordination, and curated experiential packages.
-                                    </p>
-                                </div>
-                                <div class="text-xs text-white uppercase tracking-widest py-2 px-4 border border-white/10 shrink-0">
-                                    Management Partner
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Partner Card 4: Tax & Advisory -->
-                        <div class="glass p-8 hover:border-gold-500/30 transition-all duration-300">
-                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                                <div>
-                                    <span class="text-xs uppercase tracking-widest text-gold-500 font-bold block mb-1">Fiscal Optimization Advisory</span>
-                                    <h3 class="font-serif text-2xl text-white font-light">Pessian Assoc & Advisors</h3>
-                                    <p class="text-gray-400 text-xs font-light mt-2 max-w-xl">
-                                        Protecting and maximizing cross-border investments with advanced global structure, opportunity zone programs, and tax planning protocols.
-                                    </p>
-                                </div>
-                                <div class="text-xs text-white uppercase tracking-widest py-2 px-4 border border-white/10 shrink-0">
-                                    Financial & Tax Counsel
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Partner Card 5: Legal -->
-                        <div class="glass p-8 hover:border-gold-500/30 transition-all duration-300">
-                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                                <div>
-                                    <span class="text-xs uppercase tracking-widest text-gold-500 font-bold block mb-1">Global Transaction Protection</span>
-                                    <h3 class="font-serif text-2xl text-white font-light">Balthazar & Vanguard LLC</h3>
-                                    <p class="text-gray-400 text-xs font-light mt-2 max-w-xl">
-                                        Orchestrating sovereign land entitlements, joint venture agreements, SEC filings, and regulatory security frameworks.
-                                    </p>
-                                </div>
-                                <div class="text-xs text-white uppercase tracking-widest py-2 px-4 border border-white/10 shrink-0">
-                                    Legal & Regulatory Council
-                                </div>
-                            </div>
+                        <div class="group bg-charcoal p-8 border border-white/5 hover:border-gold-500/40 transition-all duration-300">
+                            <span class="font-serif text-5xl text-gold-500/30">03</span>
+                            <h3 class="text-white text-lg font-semibold uppercase mt-4">
+                                Bank Financing
+                            </h3>
+                            <p class="text-gray-400 text-xs font-light leading-relaxed">
+                                Thru our relationships with financial institutions VENZON secures debt for construction/mortgage. Our LTV at stabilization is usually 50% or less.
+                            </p>
+                            <!-- <div class="mt-8 pt-4 border-t border-white/5 text-[10px] text-gold-500 tracking-widest uppercase font-bold group-hover:translate-x-1 transition-transform duration-300">
+                                3 years <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </div> -->
                         </div>
 
                     </div>
@@ -738,7 +691,7 @@
                                 </span>
                                 <div>
                                     <h4 class="text-gray-400 text-xs uppercase tracking-widest font-semibold">Global Headquarters</h4>
-                                    <p class="text-white font-medium">800 Fifth Avenue, Suite 45B, New York, NY 10021</p>
+                                    <p class="text-white font-medium">2377 Crenshaw Blvd Suite 260, Torrance, CA 90500</p>
                                 </div>
                             </div>
 
@@ -748,7 +701,7 @@
                                 </span>
                                 <div>
                                     <h4 class="text-gray-400 text-xs uppercase tracking-widest font-semibold">Private Relations Office</h4>
-                                    <p class="text-white font-medium">invest@venzoncorporation.com</p>
+                                    <p class="text-white font-medium">info@venzongroup.com</p>
                                 </div>
                             </div>
 
@@ -758,7 +711,7 @@
                                 </span>
                                 <div>
                                     <h4 class="text-gray-400 text-xs uppercase tracking-widest font-semibold">Secure Voice Access</h4>
-                                    <p class="text-white font-medium">+1 (212) 555-8900</p>
+                                    <p class="text-white font-medium">+1 (3106) 192-802</p>
                                 </div>
                             </div>
                         </div>
@@ -1091,8 +1044,8 @@
                         title: 'Briefing Sent',
                         text: result.message,
                         confirmButtonColor: '#869244',
-                        background: '#141419',
-                        color: '#f5f5f5'
+                        background: '#eef0df',
+                        color: '#0a0a0c'
                     });
 
                     contactForm.reset();
@@ -1102,8 +1055,8 @@
                         title: 'Submission Failed',
                         text: error.message || 'Something went wrong. Please try again.',
                         confirmButtonColor: '#869244',
-                        background: '#141419',
-                        color: '#f5f5f5'
+                        background: '#eef0df',
+                        color: '#0a0a0c'
                     });
                 } finally {
                     contactSubmitButton.disabled = false;
