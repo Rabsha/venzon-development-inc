@@ -691,7 +691,7 @@
                                 </span>
                                 <div>
                                     <h4 class="text-gray-400 text-xs uppercase tracking-widest font-semibold">Global Headquarters</h4>
-                                    <p class="text-white font-medium">2377 Crenshaw Blvd Suite 260, Torrance, CA 90500</p>
+                                    <p class="text-white font-medium">2377 Crenshaw Blvd Suite 260, Torrance, CA 90501</p>
                                 </div>
                             </div>
 
