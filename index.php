@@ -46,10 +46,16 @@
     </head>
     <body class="bg-dark text-gray-100 antialiased selection:bg-gold-600 selection:text-white">
 
-        <audio id="ambientAudio" loop preload="auto">
-            <source src="assets/images/sunborn.mp3" type="audio/wav">
-            <source src="assets/images/sunborn.mp3" type="audio/mp3">
+        <audio id="ambientAudio" src="assets/images/websound.mp3" loop autoplay preload="auto" playsinline>
+            <source src="assets/images/sunborn.mp3" type="audio/mpeg">
         </audio>
+        <script>
+            window.ambientAudio = document.getElementById('ambientAudio');
+            window.ambientAudio.volume = 0.35;
+            window.ambientAudio.muted = false;
+            window.ambientAudio.load();
+            window.ambientAudio.play().catch(() => {});
+        </script>
 
         <div id="loader" class="fixed inset-0 z-[100] bg-dark flex flex-col items-center justify-center p-6 loader-overlay">
             <video class="absolute inset-0 w-full h-full object-cover opacity-30" autoplay loop muted playsinline>
@@ -66,29 +72,16 @@
                 </h1>
                 <div class="h-[1px] w-24 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mb-8"></div>
                 
-                <p class="text-gray-400 text-sm md:text-base font-light mb-12 leading-relaxed tracking-wide">
+                <p class="text-gray-400 text-sm md:text-base font-light leading-relaxed tracking-wide">
                     Creative Generational Wealth Thru Real Estate
                 </p>
-
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <button onclick="startExperience(true)" class="px-8 py-4 bg-gold-500 hover:bg-gold-400 text-dark font-semibold tracking-wider text-xs uppercase rounded-none transition-all duration-300 w-full sm:w-auto shadow-lg shadow-gold-600/10 hover:shadow-gold-500/20 transform hover:-translate-y-0.5">
-                        <i class="fa-solid fa-volume-high mr-2"></i> Enter
-                    </button>
-                    <!-- <button onclick="startExperience(false)" class="px-8 py-4 border border-white/20 hover:border-gold-500 text-white hover:text-gold-400 font-semibold tracking-wider text-xs uppercase rounded-none transition-all duration-300 w-full sm:w-auto hover:bg-white/5">
-                        Enter Mutely
-                    </button> -->
-                </div>
-            </div>
-            
-            <div class="absolute bottom-8 text-xs text-gray-500 tracking-wider loader-content-delayed">
-                Loading Venzon Development & Investment...
             </div>
         </div>
 
         <!-- AUDIO CONTROLS (FAB at bottom right) -->
-        <div id="audioStatusContainer" class="fixed bottom-6 right-6 z-50 hidden">
+        <div id="audioStatusContainer" class="fixed bottom-6 right-6 z-[110]">
             <button onclick="toggleAudio()" class="w-12 h-12 rounded-full glass flex items-center justify-center text-white hover:text-gold-500 hover:scale-110 transition-all duration-300 shadow-xl border border-white/10" title="Toggle Soundscape">
-                <i id="audioIcon" class="fa-solid fa-volume-xmark text-lg"></i>
+                <i id="audioIcon" class="fa-solid fa-volume-high text-gold-500 animate-pulse text-lg"></i>
             </button>
         </div>
 
@@ -842,53 +835,116 @@
             });
 
             // Ambient Audio state management
-            const ambientAudio = document.getElementById('ambientAudio');
-            const audioStatusContainer = document.getElementById('audioStatusContainer');
+            const ambientAudio = window.ambientAudio || document.getElementById('ambientAudio');
             const audioIcon = document.getElementById('audioIcon');
+            const loaderIntroDelay = 3000;
+            const mainPageDelay = 3000;
             let audioPlaying = false;
+            let audioEnabled = true;
+            let audioRetryTimer = null;
 
-            // Start Experience triggers upon loading screen entry
-            function startExperience(wantsAudio) {
-                // Dismiss Loading overlay smoothly
-                const loader = document.getElementById('loader');
-                loader.style.opacity = '0';
-                loader.style.visibility = 'hidden';
+            function playAmbientAudio() {
+                if (!audioEnabled) return Promise.resolve();
 
-                // Show audio control FAB
-                audioStatusContainer.classList.remove('hidden');
-
-                if (wantsAudio) {
-                    // Play instrumental soundscape
-                    ambientAudio.volume = 0.35; // set sophisticated ambient levels
-                    ambientAudio.play().then(() => {
-                        audioPlaying = true;
-                        updateAudioIndicator();
-                    }).catch(err => {
-                        console.log("Audio play deferred due to browser click-event restrictions.");
-                    });
-                }
+                ambientAudio.muted = false;
+                ambientAudio.volume = 0.35;
+                return ambientAudio.play().then(() => {
+                    audioPlaying = true;
+                    updateAudioIndicator();
+                }).catch(() => {
+                    audioPlaying = false;
+                    updateAudioIndicator();
+                    console.log("Audio autoplay was blocked by the browser.");
+                });
             }
 
-            // Toggle Audio state manually
+            function forceStartAmbientAudio() {
+                if (!audioEnabled || audioPlaying) return;
+
+                playAmbientAudio().then(() => {
+                    if (audioPlaying) return;
+                });
+            }
+
+            function startAudioRetries() {
+                forceStartAmbientAudio();
+                audioRetryTimer = setInterval(() => {
+                    if (audioPlaying || !audioEnabled) {
+                        clearInterval(audioRetryTimer);
+                        return;
+                    }
+
+                    forceStartAmbientAudio();
+                }, 500);
+
+                setTimeout(() => clearInterval(audioRetryTimer), loaderIntroDelay + mainPageDelay);
+            }
+
             function toggleAudio() {
                 if (audioPlaying) {
                     ambientAudio.pause();
                     audioPlaying = false;
-                } else {
-                    ambientAudio.play();
-                    audioPlaying = true;
+                    audioEnabled = false;
+                    clearInterval(audioRetryTimer);
+                    updateAudioIndicator();
+                    return;
                 }
-                updateAudioIndicator();
+
+                audioEnabled = true;
+                playAmbientAudio();
             }
 
-            // Keep icons synchronized
             function updateAudioIndicator() {
-                if (audioPlaying) {
+                if (audioEnabled) {
                     audioIcon.className = "fa-solid fa-volume-high text-gold-500 animate-pulse";
                 } else {
                     audioIcon.className = "fa-solid fa-volume-xmark";
                 }
             }
+
+            ambientAudio.addEventListener('playing', () => {
+                audioPlaying = true;
+                audioEnabled = true;
+                updateAudioIndicator();
+            });
+
+            ambientAudio.addEventListener('pause', () => {
+                audioPlaying = false;
+                updateAudioIndicator();
+            });
+
+            function startExperience() {
+                // Dismiss Loading overlay smoothly
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+            }
+
+            startAudioRetries();
+            document.addEventListener('DOMContentLoaded', forceStartAmbientAudio);
+            window.addEventListener('load', forceStartAmbientAudio);
+            ambientAudio.addEventListener('loadeddata', forceStartAmbientAudio, { once: true });
+            ambientAudio.addEventListener('canplaythrough', forceStartAmbientAudio, { once: true });
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden) forceStartAmbientAudio();
+            });
+
+            function unlockAmbientAudio(event) {
+                if (event.target.closest && event.target.closest('#audioStatusContainer')) return;
+
+                playAmbientAudio().then(() => {
+                    if (audioPlaying) {
+                        document.removeEventListener('pointerdown', unlockAmbientAudio);
+                        document.removeEventListener('keydown', unlockAmbientAudio);
+                    }
+                });
+            }
+
+            document.addEventListener('pointerdown', unlockAmbientAudio);
+            document.addEventListener('keydown', unlockAmbientAudio);
+            window.addEventListener('load', () => {
+                setTimeout(startExperience, loaderIntroDelay + mainPageDelay);
+            });
 
             // Cinematic Hero Carousel Slider system
             let currentSlide = 0;
