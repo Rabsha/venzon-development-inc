@@ -53,3 +53,9 @@ body {
 .group:hover .zoom-bg {
     transform: scale(1.08);
 }
+
+@media (min-width: 1024px) {
+    .investment-model-flow > :nth-child(6) {
+        display: none;
+    }
+}
